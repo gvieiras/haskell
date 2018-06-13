@@ -21,4 +21,14 @@ formSelo = renderDivs $ (,,)
                                 fsName= Nothing,
                                 fsAttrs=[("accept","image/jpeg")]} 
                                 Nothing
+                                
+getSeloR :: Handler Html
+getSeloR = do
+    sess <- lookupSession "_USR"  
+    (widget,enctype) <- generateFormPost formSelo
+    defaultLayout $ do
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/inserirSelo.hamlet")                               
+                                
 
