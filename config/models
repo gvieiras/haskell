@@ -3,3 +3,8 @@ Artista
     genero   Text
     formacao Day
     imagem   Text Maybe
+Album
+    titulo     Text
+    artid      ArtistaId
+    lancamento Day
+    capa       Text Maybe
