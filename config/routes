@@ -17,3 +17,7 @@
 /evento               		   EventoR           GET POST
 /evento/#EventoId 	         EventoInfoR 	     GET POST
 /lista/eventos			         ListaEventosR	   GET
+
+/cadastrarselo                 SeloR             GET POST
+/selo/#SeloId 	               SeloInfoR 		     GET POST
+/listaselos                    ListaSelosR       GET
