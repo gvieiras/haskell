@@ -18,5 +18,8 @@ Evento
     dteven      Day   
     imagem      Text Maybe
 
-   
+Selo
+    nome        Text
+    fundador    Text
+    imagem      Text Maybe    
     
