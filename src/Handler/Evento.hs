@@ -65,7 +65,17 @@ getEventoInfoR eid = do
 postEventoInfoR :: EventoId -> Handler Html
 postEventoInfoR eid = do 
     runDB $ delete eid 
-    redirect ListaEventosR        
+    redirect ListaEventosR
+    
+getListaEventosR :: Handler Html
+getListaEventosR = do
+    sess <- lookupSession "_USR" 
+    eventos <- runDB $ selectList [] [Asc EventoNome]
+    defaultLayout $ do
+        toWidget $(luciusFile "templates/home.lucius") 
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/listaeventos.hamlet")  
+    
 
 
  
