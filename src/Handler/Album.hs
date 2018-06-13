@@ -59,3 +59,8 @@ getPaginaAlbumR artid alid = do
                 $maybe img <- imagem 
                     <img width="250px" height="250px" src=#{staticDir ++ img}>
         |]
+
+postPaginaAlbumR :: ArtistaId -> AlbumId -> Handler Html
+postPaginaAlbumR artid alid = do 
+    runDB $ delete alid 
+    redirect (PerfilArtistaR artid)
