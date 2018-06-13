@@ -31,3 +31,17 @@ getAlbumR artid = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/inserirAlbum.hamlet")
+
+postAlbumR :: ArtistaId -> Handler Html
+postAlbumR  artid = do 
+    -- LEIO OS PARAMETROS DO FORM
+    ((res,_),_) <- runFormPost formAlbum
+    case res of
+        FormSuccess (titulo,lan,Just arq) -> do
+            alid <- runDB $ insert $ Album titulo artid lan(Just $ (fileName arq))
+            liftIO $ fileMove arq ("static/" ++ (unpack $ fileName arq))
+            redirect (PerfilArtistaR artid)
+        FormSuccess (titulo,lan,Nothing) -> do 
+            alid <- runDB $ insert $ Album titulo artid lan Nothing
+            redirect (PerfilArtistaR artid)
+        _ -> redirect HomeR
