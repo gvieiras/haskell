@@ -61,6 +61,15 @@ getSeloInfoR sid = do
 postSeloInfoR :: SeloId -> Handler Html
 postSeloInfoR sid = do 
     runDB $ delete sid 
-    redirect ListaSelosR          
+    redirect ListaSelosR
+    
+getListaSelosR :: Handler Html
+getListaSelosR = do
+    sess <- lookupSession "_USR" 
+    selos <- runDB $ selectList [] [Asc SeloNome]
+    defaultLayout $ do 
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/listaselos.hamlet")    
                                 
 
