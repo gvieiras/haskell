@@ -24,4 +24,13 @@ formEvento = renderDivs $ (,,,,,)
                                 fsName= Nothing,
                                 fsAttrs=[("accept","image/jpeg")]} 
                                 Nothing
-
+                                
+getEventoR :: Handler Html
+getEventoR = do
+    sess <- lookupSession "_USR"  
+    (widget,enctype) <- generateFormPost formEvento
+    defaultLayout $ do
+        toWidget $(luciusFile "templates/inserirEvento.lucius")
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/inserirEvento.hamlet")
