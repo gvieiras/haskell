@@ -57,5 +57,10 @@ getSeloInfoR sid = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/paginaselo.hamlet")
+        
+postSeloInfoR :: SeloId -> Handler Html
+postSeloInfoR sid = do 
+    runDB $ delete sid 
+    redirect ListaSelosR          
                                 
 
