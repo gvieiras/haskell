@@ -12,3 +12,8 @@
 
 /perfil/artista/#ArtistaId/album			AlbumR			  GET POST
 /perfil/artista/#ArtistaId/album/#AlbumId	PaginaAlbumR	  GET POST
+
+
+/evento               		   EventoR           GET POST
+/evento/#EventoId 	         EventoInfoR 	     GET POST
+/lista/eventos			         ListaEventosR	   GET
