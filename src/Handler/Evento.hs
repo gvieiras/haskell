@@ -24,7 +24,7 @@ formEvento = renderDivs $ (,,,,,)
                                 fsName= Nothing,
                                 fsAttrs=[("accept","image/jpeg")]} 
                                 Nothing
-                                
+
 getEventoR :: Handler Html
 getEventoR = do
     sess <- lookupSession "_USR"  
@@ -34,3 +34,23 @@ getEventoR = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/inserirEvento.hamlet")
+
+
+        
+postEventoR :: Handler Html 
+postEventoR = do 
+    ((res,_),_) <- runFormPost formEvento
+    case res of 
+        FormSuccess (nome,artistas,preco,local,dte,Just arq) -> do 
+            eid <- runDB $ insert $ Evento nome artistas preco local dte (Just $ (fileName arq))
+            liftIO $ fileMove arq ("static/" ++ (unpack $ fileName arq))
+            redirect (EventoInfoR eid)
+        FormSuccess (nome,artistas,preco,local,dte,Nothing) -> do 
+            eid <- runDB $ insert $ Evento nome artistas preco local dte Nothing
+            redirect (EventoInfoR eid)
+        _ -> redirect HomeR
+
+
+
+ 
+        
