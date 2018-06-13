@@ -9,3 +9,6 @@
 /artista					   			ArtistaR		  GET POST
 /perfil/artista/#ArtistaId     			PerfilArtistaR    GET POST
 /lista/artista                 			ListaArtistaR     GET
+
+/perfil/artista/#ArtistaId/album			AlbumR			  GET POST
+/perfil/artista/#ArtistaId/album/#AlbumId	PaginaAlbumR	  GET POST
