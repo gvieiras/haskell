@@ -46,3 +46,15 @@ postArtistaR = do
             aid <- runDB $ insert $ Artista nome gen dat Nothing
             redirect (PerfilArtistaR aid)
         _ -> redirect HomeR
+
+getPerfilArtistaR :: ArtistaId -> Handler Html
+getPerfilArtistaR aid = do
+    albs <- runDB $ selectList[AlbumArtid ==. aid][Asc AlbumLancamento]
+    sess <- lookupSession "_USR"
+    art <- runDB $ get404 aid
+    imagem <- return $ artistaImagem art
+    staticDir <- return $ "../../static/"
+    defaultLayout $ do
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/artistapage.hamlet")
