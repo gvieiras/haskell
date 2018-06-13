@@ -58,3 +58,8 @@ getPerfilArtistaR aid = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/artistapage.hamlet")
+
+postPerfilArtistaR :: ArtistaId -> Handler Html
+postPerfilArtistaR aid = do
+    runDB $ delete aid 
+    redirect ListaArtistaR
