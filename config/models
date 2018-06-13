@@ -1,0 +1,5 @@
+Artista
+    nome     Text
+    genero   Text
+    formacao Day
+    imagem   Text Maybe
