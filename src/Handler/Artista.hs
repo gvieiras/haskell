@@ -23,3 +23,12 @@ formArtista = renderDivs $ (,,,)
                                 fsName= Nothing,
                                 fsAttrs=[("accept","image/jpeg")]} 
                                 Nothing
+                                
+getArtistaR :: Handler Html
+getArtistaR = do
+    sess <- lookupSession "_USR" 
+    (widget,enctype) <- generateFormPost formArtista
+    defaultLayout $ do
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/inserirArtista.hamlet")
