@@ -21,3 +21,13 @@ formAlbum = renderDivs $ (,,)
                                 fsName= Nothing,
                                 fsAttrs=[("accept","image/jpeg")]} 
                                 Nothing
+
+getAlbumR :: ArtistaId -> Handler Html
+getAlbumR artid = do
+    sess <- lookupSession "_USR"
+    art <- runDB $ get404 artid 
+    (widget,enctype) <- generateFormPost formAlbum
+    defaultLayout $ do 
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/inserirAlbum.hamlet")
