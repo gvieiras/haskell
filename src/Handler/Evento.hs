@@ -62,6 +62,11 @@ getEventoInfoR eid = do
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/paginaevento.hamlet")    
 
+postEventoInfoR :: EventoId -> Handler Html
+postEventoInfoR eid = do 
+    runDB $ delete eid 
+    redirect ListaEventosR        
+
 
  
         
