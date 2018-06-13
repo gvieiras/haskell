@@ -45,3 +45,17 @@ postAlbumR  artid = do
             alid <- runDB $ insert $ Album titulo artid lan Nothing
             redirect (PerfilArtistaR artid)
         _ -> redirect HomeR
+        
+getPaginaAlbumR :: ArtistaId -> AlbumId -> Handler Html
+getPaginaAlbumR artid alid = do 
+    alb <- runDB $ get404 alid
+    imagem <- return $ albumCapa alb
+    staticDir <- return $ "../../../../static/"
+    defaultLayout $ do 
+        [whamlet|
+            <h1>
+                #{albumTitulo alb}
+            <h2>
+                $maybe img <- imagem 
+                    <img width="250px" height="250px" src=#{staticDir ++ img}>
+        |]
