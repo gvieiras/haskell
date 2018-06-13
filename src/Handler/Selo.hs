@@ -43,6 +43,19 @@ postSeloR = do
         FormSuccess (nome,fundador,Nothing) -> do 
             sid <- runDB $ insert $ Selo nome fundador Nothing
             redirect (SeloInfoR sid)
-        _ -> redirect HomeR      
+        _ -> redirect HomeR
+        
+        
+        
+getSeloInfoR :: SeloId -> Handler Html
+getSeloInfoR sid = do
+    sess <- lookupSession "_USR"  
+    selo <- runDB $ get404 sid
+    imagem <- return $ seloImagem selo
+    staticDir <- return $ "../static/"
+    defaultLayout $ do 
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/paginaselo.hamlet")
                                 
 
