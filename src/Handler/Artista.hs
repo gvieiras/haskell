@@ -63,3 +63,13 @@ postPerfilArtistaR :: ArtistaId -> Handler Html
 postPerfilArtistaR aid = do
     runDB $ delete aid 
     redirect ListaArtistaR
+
+getListaArtistaR :: Handler Html
+getListaArtistaR = do
+    sess <- lookupSession "_USR"
+    staticDir <- return $ "../../static/"
+    arts <- runDB $ selectList [] [Desc ArtistaId]
+    defaultLayout $ do 
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/artista.hamlet")
