@@ -51,6 +51,17 @@ postEventoR = do
         _ -> redirect HomeR
 
 
+getEventoInfoR :: EventoId -> Handler Html
+getEventoInfoR eid = do
+    sess <- lookupSession "_USR"  
+    evento <- runDB $ get404 eid
+    imagem <- return $ eventoImagem evento
+    staticDir <- return $ "../static/"
+    defaultLayout $ do
+        toWidget $(luciusFile "templates/home.lucius") 
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/paginaevento.hamlet")    
+
 
  
         
