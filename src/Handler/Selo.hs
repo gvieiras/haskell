@@ -29,6 +29,20 @@ getSeloR = do
     defaultLayout $ do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
-        $(whamletFile "templates/inserirSelo.hamlet")                               
+        $(whamletFile "templates/inserirSelo.hamlet")
+      
+      
+postSeloR :: Handler Html 
+postSeloR = do 
+    ((res,_),_) <- runFormPost formSelo
+    case res of 
+        FormSuccess (nome,fundador,Just arq) -> do 
+            sid <- runDB $ insert $ Selo nome fundador  (Just $ (fileName arq))
+            liftIO $ fileMove arq ("static/" ++ (unpack $ fileName arq))
+            redirect (SeloInfoR sid)
+        FormSuccess (nome,fundador,Nothing) -> do 
+            sid <- runDB $ insert $ Selo nome fundador Nothing
+            redirect (SeloInfoR sid)
+        _ -> redirect HomeR      
                                 
 
