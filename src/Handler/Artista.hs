@@ -32,3 +32,17 @@ getArtistaR = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/inserirArtista.hamlet")
+        
+postArtistaR :: Handler Html
+postArtistaR = do 
+    -- LEIO OS PARAMETROS DO FORM
+    ((res,_),_) <- runFormPost formArtista
+    case res of
+        FormSuccess (nome,gen,dat,Just arq) -> do 
+            aid <- runDB $ insert $ Artista nome gen dat (Just $ (fileName arq))
+            liftIO $ fileMove arq ("static/" ++ (unpack $ fileName arq))
+            redirect (PerfilArtistaR aid)
+        FormSuccess (nome,gen,dat,Nothing) -> do 
+            aid <- runDB $ insert $ Artista nome gen dat Nothing
+            redirect (PerfilArtistaR aid)
+        _ -> redirect HomeR
