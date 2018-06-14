@@ -52,3 +52,8 @@ postLogarR = do
                     setSession "_USR" (pack (show $ Usuario n e ""))
                     redirect (HomeR)
         _ -> redirect HomeR
+        
+postSairR :: Handler Html
+postSairR = do 
+    deleteSession "_USR"
+    redirect HomeR
