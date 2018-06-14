@@ -36,3 +36,17 @@ postCadUsuarioR = do
             uid <- runDB $ insert usu 
             redirect (PerfilUsuarioR uid)
         _ -> redirect HomeR
+
+getPerfilUsuarioR :: UsuarioId -> Handler Html
+getPerfilUsuarioR uid = do 
+    usu <- runDB $ get404 uid
+    defaultLayout $ do 
+        [whamlet|
+            <h1> 
+                Nome: #{usuarioNome usu}
+
+            <h2>
+                E-mail: #{usuarioEmail usu}
+
+            <a href=@{HomeR}> Voltar
+        |]
