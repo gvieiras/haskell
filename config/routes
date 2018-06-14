@@ -21,3 +21,6 @@
 /cadastrarselo                 SeloR             GET POST
 /selo/#SeloId 	               SeloInfoR 		     GET POST
 /lista/selos                   ListaSelosR       GET
+
+/usuario/cadastrar             			CadUsuarioR       GET POST
+/usuario/#UsuarioId/perfil     			PerfilUsuarioR    GET
