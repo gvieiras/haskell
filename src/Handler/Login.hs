@@ -57,3 +57,13 @@ postSairR :: Handler Html
 postSairR = do 
     deleteSession "_USR"
     redirect HomeR
+
+getAdminR :: Handler Html
+getAdminR = do
+    defaultLayout $ do
+     [whamlet|
+        <!--<h1> Administrador
+        <form action=@{SairR} method=post>
+            <input type="submit" value="Logout">
+            <a href=@{HomeR}> Voltar-->
+    |]
