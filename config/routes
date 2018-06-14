@@ -20,4 +20,4 @@
 
 /cadastrarselo                 SeloR             GET POST
 /selo/#SeloId 	               SeloInfoR 		     GET POST
-/listaselos                    ListaSelosR       GET
+/lista/selos                   ListaSelosR       GET
