@@ -27,3 +27,7 @@ getLogarR = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/login.hamlet")
+
+autenticar :: Text -> Text -> HandlerT App IO (Maybe (Entity Usuario))
+autenticar email senha = runDB $ selectFirst [UsuarioEmail ==. email
+                                             ,UsuarioSenha ==. senha] []
