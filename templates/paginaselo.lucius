@@ -1,0 +1,21 @@
+body{
+	background-color:#A8A8A8;
+	font-family:Ubuntu;
+}
+
+#infoselo{
+	background-color:white;
+	margin:0 auto;
+	border-radius:5px;
+	width:80%;
+}
+
+#imgsel{
+	left: 50%;
+	top: 50%;
+	margin:25% 25%.
+}
+
+
+
+

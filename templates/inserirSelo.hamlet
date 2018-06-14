@@ -1,0 +1,9 @@
+<div class="menuesqLogin">
+    <h2>
+        Cadastro de selo
+    <br>
+    <form action=@{SeloR} method=post enctype=#{enctype}>
+        ^{widget}
+        <br>
+        <input type="submit" value="OK">
+    <br>

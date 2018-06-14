@@ -1,0 +1,40 @@
+<div class="menuesqLogin" style="text-align:left;">
+    <div style="width:100%">
+        <table style="width:100%">
+          <a id="addart" href=@{EventoR}>[+] Novo evento
+            <thead>
+                <tr>
+                    <th>
+                        Nome do Evento
+                    <th> 
+                        Artistas participantes
+                    <th>
+                        Preço
+                    <th>
+                        Local
+                    <th>
+                        Data
+                    <th>
+                        
+            <tbody>
+                $forall (Entity eid evento) <- eventos
+                    <tr>
+                        <td>
+                            <a href=@{EventoInfoR eid}> 
+                                #{eventoNome evento}
+                        
+                        <td>
+                            #{eventoArtistas evento}
+                        
+                        <td>
+                            \$ #{eventoPreco evento}
+
+                        <td>
+                            #{eventoLocal evento}
+
+                        <td>
+                            #{show $ eventoDteven evento}
+
+                        <td>
+                            <form action=@{EventoInfoR eid} method=post>
+                                <input type="submit" value="Excluir">

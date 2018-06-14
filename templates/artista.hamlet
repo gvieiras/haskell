@@ -1,0 +1,39 @@
+<div class="menuesqLogin" style="text-align:left;">
+    <div style="width:100%">
+        <table style="width:100%">
+          <a id="addart" href=@{ArtistaR}>[+] Novo artista
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    
+                    <th> 
+                        Gênero
+                    
+                    <th>
+                        Data de formação
+                    
+                    <th>
+                        
+            
+            <tbody>
+                $forall (Entity aid artista) <- arts
+                    <tr>
+                        <td>
+                            $maybe imagem <- artistaImagem artista
+                                <img id="albumCapa" src=#{staticDir ++ imagem}>
+                            $nothing
+                                <img id="albumCapa" src=#{staticDir ++ "no-image.gif"}>
+
+                            <a href=@{PerfilArtistaR aid}> 
+                                #{artistaNome artista}
+                        
+                        <td>
+                            #{artistaGenero artista}
+                        
+                        <td>
+                            #{show $ artistaFormacao artista}
+                        
+                        <td>
+                            <form action=@{PerfilArtistaR aid} method=post>
+                                <input type="submit" value="Excluir">

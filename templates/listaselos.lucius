@@ -1,0 +1,33 @@
+body{
+	background-color:#A8A8A8;
+	font-family:Ubuntu;
+}
+
+
+footer{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background-color:black;
+    color:white;
+    height:30px;
+    text-align:center;
+
+}
+
+
+#listasel{
+	background-color:white;
+	width:80%;
+	margin:0 auto;
+	border-radius:5px;
+}
+
+#addselo{
+	background-color:#2B2B2B;
+	color:white;
+	text-decoration:none;
+	float:right;
+}
+

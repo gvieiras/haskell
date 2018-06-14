@@ -1,0 +1,46 @@
+<div id="tudo">
+    <div class="menuesq">
+        <div class="info" style="width:45%;float:left;background-color:transparent">
+            $maybe img <- imagem 
+                <img id="fotoArtista" src=#{staticDir ++ img}>
+            $nothing
+                <img id="fotoArtista" src=#{staticDir ++ "no-image.gif"}>
+
+        <div class="info" style="width:45%;float:right">
+                <h1>
+                    #{artistaNome art}
+                <hr>
+            <p>
+                <span class="specialtxt">
+                    gênero musical:
+
+                <span class="metainfo">
+                    #{show $ artistaGenero art}  
+            <p>
+                <span class="specialtxt">
+                    data de formação:
+                
+                <span class="metatxt">
+                    #{show $ artistaFormacao art} 
+
+    <div class="menuesq">
+        <div class="info">
+            <h2 style="display:inline">Álbuns
+            <p style="text-align:right;display:inline;float:right">
+                <a href=@{AlbumR aid}>
+                    adicionar álbum 
+            <hr>
+            <tbody>
+                $forall (Entity albid album) <- albs
+                    <tr>
+                        <td>
+                            <p>
+                                <form style="display:inline" action=@{PaginaAlbumR aid albid} method=post>
+                                    <input id="deleteAlbum" type="submit" value="[x]">
+                                $maybe capa <- albumCapa album
+                                    <img id="albumCapa" src=#{staticDir ++ capa}>
+                                $nothing
+                                    <img id="albumCapa" src=#{staticDir ++ "no-album.jpg"}>
+                                <span id="albumTitle" style="font-size:18px;">
+                                    #{albumTitulo album} 
+                                <span style="font-size:12px;">(#{show $ albumLancamento album})

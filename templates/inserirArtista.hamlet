@@ -1,0 +1,9 @@
+<div class="menuesqLogin">
+    <h2>
+        Cadastro de artista
+    <br>
+    <form action=@{ArtistaR} method=post enctype=#{enctype}>
+        ^{widget}
+        <br>
+        <input type="submit" value="OK">
+    <br>

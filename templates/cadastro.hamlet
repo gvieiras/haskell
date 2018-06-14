@@ -1,0 +1,9 @@
+<div class="menuesqLogin">
+    <h2>
+        Cadastro
+    <br>
+    <form action=@{CadUsuarioR} method=post enctype=#{enctype}>
+        ^{widget}
+        <br>
+        <input type="submit" value="OK">
+    <br>

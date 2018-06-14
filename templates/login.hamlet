@@ -1,0 +1,12 @@
+<div class="menuesqLogin">
+    <h2>
+        Login
+    <br>
+    $maybe mensa <- msg
+        ^{mensa}
+    <form action=@{LogarR} method=post enctype=#{enctype}>
+        ^{widget}
+        <br>
+        <input type="submit" value="OK">
+    <br>
+    <h3>Não tem login? Faça <a href=@{CadUsuarioR}>cadastro</a>.

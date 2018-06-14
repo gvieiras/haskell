@@ -1,0 +1,24 @@
+<div class="menuesqLogin" style="text-align:left;">
+    <div style="width:100%">
+        <table style="width:100%">
+          <a id="addart" href=@{SeloR}>[+] Novo selo
+            <thead>
+                <tr>
+                    <th>
+                        Nome do selo
+                    <th> 
+                        Fundador
+                    <th>
+            <tbody>
+                $forall (Entity sid selo) <- selos
+                    <tr>
+                        <td>
+                            <a href=@{SeloInfoR sid}> 
+                              #{seloNome selo}
+                        
+                        <td>
+                            #{seloFundador selo}
+
+                        <td>
+                            <form action=@{SeloInfoR sid} method=post>
+                                <input type="submit" value="Excluir">

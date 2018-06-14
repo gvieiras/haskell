@@ -1,0 +1,22 @@
+<div id="tudo">
+    <div class="menuesq">
+        <div class="info">
+            <h2 style="display:inline;text-align:center">
+                Pôster
+            <br>
+            $maybe img <- imagem 
+                <img id="fotoEvento" src=#{staticDir ++ img}>
+            $nothing
+                <img id="fotoEvento" src=#{staticDir ++ "no-poster.png"}>
+
+    <div class="menuesq">
+        <div class="info">
+            <h2 style="display:inline">
+                Informações
+            <br>
+            <p>
+                Evento: #{eventoNome evento}<br>
+                Participantes do Evento: #{eventoArtistas evento}<br>    
+                Preço: R$ #{show $ eventoPreco evento}<br> 
+                Local do Evento: #{eventoLocal evento}<br>    
+                Data do Evento: #{show $ eventoDteven evento}

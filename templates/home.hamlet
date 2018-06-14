@@ -1,0 +1,38 @@
+<div id="tudo">
+    <div class="menuesq">
+        <div class="info">
+            <h2 style="display:inline">
+                Últimos artistas inseridos
+            <tbody>
+                $forall (Entity artid artista) <- arts
+                    <tr>
+                        <td>
+                            <p>
+                                $maybe imagem <- artistaImagem artista
+                                    <img id="albumCapa" src=#{staticDir ++ imagem}>
+                                $nothing
+                                    <img id="albumCapa" src=#{staticDir ++ "no-image.gif"}>
+
+                                <span id="albumTitle" style="font-size:18px;">
+                                    <a href=@{PerfilArtistaR artid}>
+                                        #{artistaNome artista}
+                                <span style="font-size:12px;"> (#{artistaGenero artista}) 
+
+    <div class="menuesq">
+        <div class="info">
+            <h2 style="display:inline">
+                Últimos eventos 
+            <tbody>
+                $forall (Entity eid evento) <- evs
+                    <tr>
+                        <td>
+                            <p>
+                                $maybe imagem <- eventoImagem evento
+                                    <img id="albumCapa" src=#{staticDir ++ imagem}>
+                                $nothing
+                                    <img id="albumCapa" src=#{staticDir ++ "no-poster.png"}>
+
+                                <span id="albumTitle" style="font-size:18px;">
+                                    <a href=@{EventoInfoR eid}>
+                                        #{eventoNome evento}
+                                <span style="font-size:12px;"> (#{show $ eventoDteven evento})              

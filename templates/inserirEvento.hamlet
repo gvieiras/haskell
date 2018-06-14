@@ -1,0 +1,9 @@
+<div class="menuesqLogin">
+    <h2>
+        Cadastro de evento
+    <br>
+    <form action=@{EventoR} method=post enctype=#{enctype}>
+        ^{widget}
+        <br>
+        <input type="submit" value="Cadastrar Evento">
+    <br>
