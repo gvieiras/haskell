@@ -27,3 +27,12 @@ getCadUsuarioR = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/menuetc.hamlet")
         $(whamletFile "templates/cadastro.hamlet")
+        
+postCadUsuarioR :: Handler Html
+postCadUsuarioR = do 
+    ((result,_),_) <- runFormPost formUsuario
+    case result of
+        FormSuccess usu -> do 
+            uid <- runDB $ insert usu 
+            redirect (PerfilUsuarioR uid)
+        _ -> redirect HomeR
