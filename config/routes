@@ -24,3 +24,7 @@
 
 /usuario/cadastrar             			CadUsuarioR       GET POST
 /usuario/#UsuarioId/perfil     			PerfilUsuarioR    GET
+
+/login                         			LogarR            GET POST
+/logout                        			SairR             POST
+/AdminR                        			AdminR            GET
