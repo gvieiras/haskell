@@ -17,3 +17,13 @@ formUsuario = renderDivs $ Usuario
         <$> areq textField "Nome: " Nothing
         <*> areq emailField "Email: " Nothing
         <*> areq passwordField  "Senha: " Nothing
+        
+getCadUsuarioR :: Handler Html
+getCadUsuarioR = do 
+    (widget,enctype) <- generateFormPost formUsuario
+    sess <- lookupSession "_USR"
+    defaultLayout $ do 
+        toWidget $(juliusFile "templates/home.julius")
+        toWidget $(luciusFile "templates/home.lucius")
+        $(whamletFile "templates/menuetc.hamlet")
+        $(whamletFile "templates/cadastro.hamlet")
